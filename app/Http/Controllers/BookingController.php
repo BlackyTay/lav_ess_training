@@ -28,7 +28,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-        $users = DB::table('users')->get()->pluck('name', 'id')->dd();
+        $users = DB::table('users')->get()->pluck('name', 'id')->prepend('none');
         $rooms = DB::table('rooms')->get()->pluck('number', 'id');
         return view('bookings.create')
             ->with('users', $users)
