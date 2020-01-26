@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('buttons')
-<a class="btn btn-primary" href="{{ route('booking.create') }}" role="button">
+<a class="btn btn-primary" href="{{ route('bookings.create') }}" role="button">
     Add New Booking
 </a>
 @endsection
