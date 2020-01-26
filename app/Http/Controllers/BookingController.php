@@ -14,7 +14,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        \DB::table('bookings')->get()->dd();
     }
 
     /**
