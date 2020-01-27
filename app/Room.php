@@ -9,4 +9,12 @@ class Room extends Model
     protected $table = 'rooms';
     protected $primarKey = 'id';
     public $timestamps = true;
+
+    public function scopeByType($query, $roomTypeId = null)
+    {
+        if (!is_null($roomTypeId)) {
+            $query->where('room_type_id', $roomTypeId);
+        }
+        return $query;
+    }
 }

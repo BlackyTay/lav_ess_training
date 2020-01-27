@@ -21,11 +21,13 @@ class ShowRoomsController extends Controller
         // if ($request->query('id') !== null) {
         //     $rooms = $rooms->where('room_type_id', $request->query('id'));
         // }
-        if (isset($roomType)) {
-            $rooms = Room::where('room_type_id', '!=',$roomType)->get();
-        } else {
-            $rooms = Room::get();
-        }
+        ///////////////////////////////////////////
+        // if (isset($roomType)) {
+        //     $rooms = Room::where('room_type_id', '!=',$roomType)->get();
+        // } else {
+        //     $rooms = Room::get();
+        // }
+        $rooms = Room::byType($roomType)->get();
         // return response()->json($rooms);
         return view('rooms.index', ['rooms'=>$rooms]);
         // return response('A listing of rooms', 200);
