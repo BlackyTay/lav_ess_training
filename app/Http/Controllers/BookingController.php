@@ -18,7 +18,7 @@ class BookingController extends Controller
         // \DB::table('bookings')->get()->dd();
         // $bookings = DB::table('bookings')->get();
         // Booking::withTrashed()->get()->dd();
-        $bookings = Booking::paginate(10);
+        $bookings = Booking::with(['room.roomType','users:user_id,name'])->paginate(10);
         return view('bookings.index')
             ->with('bookings', $bookings);
     }
