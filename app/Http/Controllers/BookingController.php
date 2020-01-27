@@ -66,7 +66,8 @@ class BookingController extends Controller
      */
     public function show(Booking $booking)
     {
-        dd($booking);
+        // dd($booking);
+        return view('bookings.show', ['booking' => $booking]);
     }
 
     /**
