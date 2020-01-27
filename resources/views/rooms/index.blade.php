@@ -17,7 +17,8 @@
         @foreach($rooms as $room)
             <tr>
                 <td>
-                    {{ $room->number }}
+                    {{ $room->number }} 
+                    <!-- lazy loading -->
                 </td>
                 <td>
                     {{ $room->roomType->name }}    
