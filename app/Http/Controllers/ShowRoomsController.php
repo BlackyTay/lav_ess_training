@@ -22,7 +22,7 @@ class ShowRoomsController extends Controller
         //     $rooms = $rooms->where('room_type_id', $request->query('id'));
         // }
         if (isset($roomType)) {
-            $rooms = Room::where('room_type_id', $roomType)->get();
+            $rooms = Room::where('room_type_id', '!=',$roomType)->get();
         } else {
             $rooms = Room::get();
         }
