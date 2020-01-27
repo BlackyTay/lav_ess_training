@@ -2,7 +2,7 @@
 
 @section('content')
 <dl>
-    @foreach($booking->getAttributes() as $name => $ value)
+    @foreach($booking->getAttributes() as $name => $id)
     <dt>{{ $name }}</dt>
     <dd>{{ $booking->$name }}</dd>
     @endforeach
