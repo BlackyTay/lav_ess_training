@@ -11,14 +11,14 @@ class EmailReservationsCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'reservations:notify';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Notify reservations holders';
 
     /**
      * Create a new command instance.
