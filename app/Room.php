@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Room extends Model
 {
     protected $table = 'rooms';
-    protected $primarKey = 'id';
+    protected $primaryKey = 'id';
     public $timestamps = true;
 
     public function scopeByType($query, $roomTypeId = null)
