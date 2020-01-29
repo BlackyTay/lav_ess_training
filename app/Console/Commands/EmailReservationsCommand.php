@@ -39,7 +39,7 @@ class EmailReservationsCommand extends Command
      */
     public function handle()
     {
-        $answer = $this->anticipate(
+        $answer = $this->choice(
             "What service should we use?", 
             ['sms', 'email']
         );
