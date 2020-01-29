@@ -41,7 +41,8 @@ class EmailReservationsCommand extends Command
     {
         $answer = $this->choice(
             "What service should we use?", 
-            ['sms', 'email']
+            ['sms', 'email'],
+            'email'
         );
         var_dump($answer);
         $count = $this->argument('count');
