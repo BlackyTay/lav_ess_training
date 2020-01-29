@@ -37,6 +37,7 @@ class EmailReservationsCommand extends Command
      */
     public function handle()
     {
-        //
+        $bookings = \App\Booking::with(['room.roomType', 'users'])->get();
+        $this->info(sprintf('The number of bookings to alert for is: %d', $bookings->count()));
     }
 }
