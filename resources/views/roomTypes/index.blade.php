@@ -19,7 +19,11 @@
                 <td>{{ $roomType->id }}</td>
                 <td>{{ $roomType->name }}</td>
                 <td>{{ $roomType->description }}</td>
-                <td></td>
+                <td>
+                    <img width="50px" 
+                    src="@php echo \Illuminate\Support\Facades\Storage::url($roomType->picture) @endphp"
+                    />
+                </td>
                 <td>{{ date('F d, Y', strtotime($roomType->created_at)) }}</td>
                 <td class="actions">
                     <a
