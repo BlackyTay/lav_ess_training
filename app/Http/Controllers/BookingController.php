@@ -46,22 +46,8 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        // $id = DB::table('bookings')->insertGetId([
-        //     'room_id' => $request->input('room_id'),
-        //     'start' => $request->input('start'),
-        //     'end' => $request->input('end'),
-        //     'is_reservation' => $request->input('is_reservation', false),
-        //     'is_paid' => $request->input('is_paid', false),
-        //     'notes' => $request->input('notes')
-        // ]);
-        ////////////////////////////
         $booking = Booking::create($request->input());
-        // DB::table('bookings_users')->insert([
-        //     'booking_id' => $booking->id,
-        //     'user_id' => $request->input('user_id')
-        // ]);
         $booking->users()->attach($request->input('user_id'));
-        // $user -= $booking->users()->create(['name'=>'test']);
         return redirect()->action('BookingController@index');
     }
 
@@ -104,25 +90,22 @@ class BookingController extends Controller
      */
     public function update(Request $request, Booking $booking)
     {
-        // DB::table('bookings')
-        // ->where('id', $booking->id)
-        // ->update([
-        //     'room_id' => $request->input('room_id'),
-        //     'start' => $request->input('start'),
-        //     'end' => $request->input('end'),
-        //     'is_reservation' => $request->input('is_reservation', false),
-        //     'is_paid' => $request->input('is_paid', false),
-        //     'notes' => $request->input('notes')
-        // ]);
-        ////////////////////////////////////
-        $booking->fill($request->input());
+        $validatedData = $request->validate([
+            'start' => 'required',
+            'end' => 'required',
+            'room_id' => 'required',
+            'user_id' => 'required',
+            'is_paid' => 'nullable',
+            'notes' => 'present',
+            'is_reservation' => 'required',
+        ]);
+        $booking->fill($validatedData);
         $booking->save();
-        // DB::table('bookings_users')
-        // ->where('booking_id', $booking->id)
-        // ->update([
-        //     'user_id' => $request->input('user_id')
-        // ]);
-        $booking->users()->sync([$request->input('user_id')]);
+        DB::table('bookings_users')
+            ->where('booking_id', $booking->id)
+            ->update([
+                'user_id' => $validatedData['user_id'],
+            ]);
         return redirect()->action('BookingController@index');
     }
 
@@ -134,10 +117,6 @@ class BookingController extends Controller
      */
     public function destroy(Booking $booking)
     {
-        // DB::table('bookings')->where('id', $booking->id)->delete();
-        //////////////////// 
-        // DB::table('bookings_users')->where('booking_id', $booking->id)->delete();
-        ////////////////////
         $booking->users()->detach();
         $booking->delete();
         return redirect()->action('BookingController@index');
