@@ -39,7 +39,10 @@ class EmailReservationsCommand extends Command
      */
     public function handle()
     {
-        $answer = $this->ask("What service should we use?");
+        $answer = $this->anticipate(
+            "What service should we use?", 
+            ['sms', 'email']
+        );
         var_dump($answer);
         $count = $this->argument('count');
         if (!is_numeric($count)) {
