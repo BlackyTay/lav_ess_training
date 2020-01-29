@@ -38,7 +38,12 @@ class EmailReservationsCommand extends Command
      */
     public function handle()
     {
-        $bookings = \App\Booking::with(['room.roomType', 'users'])->get();
+        $count = $this->argument('count');
+        if (!is_numeric($count)) {
+            $this->alert('The count must be a number');
+            return 1;
+        }
+        $bookings = \App\Booking::with(['room.roomType', 'users'])->limit($count)->get();
         $this->info(sprintf('The number of bookings to alert for is: %d', $bookings->count()));
         $bar = $this->output->createProgressBar($bookings->count());
         // $bar->setBarWidth(100);
