@@ -11,7 +11,8 @@ class EmailReservationsCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'reservations:notify {count}';
+    protected $signature = 'reservations:notify 
+    {count : The number of bookings to retrieve}';
 
     /**
      * The console command description.
