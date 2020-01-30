@@ -28,6 +28,9 @@ class Reservations extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.reservation');
+        return $this->markdown('emails.reservation')
+            ->with([
+                'name' => 'Alex Winger',
+            ]);
     }
 }
