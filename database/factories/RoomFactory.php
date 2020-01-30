@@ -10,6 +10,6 @@ $factory->define(Room::class, function (Faker $faker) {
 
     return [
         'number' => $faker->unique()->randomNumber(),
-        'romm_type_id' => $faker->randomElement($roomTypes),
+        'room_type_id' => $faker->randomElement($roomType),
     ];
 });
