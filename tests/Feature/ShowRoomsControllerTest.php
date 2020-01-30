@@ -18,6 +18,8 @@ class ShowRoomsControllerTest extends TestCase
         $response = $this->get('/rooms');
 
         $response->assertStatus(200)
-            ->assertSeeText('Type');
+            ->assertSeeText('Type')
+            ->assertViewIs('rooms.index')
+            ->assertViewHas('rooms');
     }
 }
