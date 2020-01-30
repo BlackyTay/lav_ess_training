@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\RoomType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class RoomTypeController extends Controller
 {
@@ -71,8 +72,7 @@ class RoomTypeController extends Controller
      */
     public function update(Request $request, RoomType $roomType)
     {
-        $roomType->picture = $request->file('picture')->store('public');
-        $roomType->save();
+        $roomType->picture = Storage::putFile('public', $request->file('picture'));
         return redirect()->action('RoomTypeController@index');
     }
 
