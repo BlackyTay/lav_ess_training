@@ -72,7 +72,11 @@ class RoomTypeController extends Controller
      */
     public function update(Request $request, RoomType $roomType)
     {
-        $roomType->picture = Storage::putFile('public', $request->file('picture'));
+        if (($request->file('picture')) != null)
+            $roomType->picture = Storage::putFile('public', $request->file('picture'));
+        // $roomType->fill([$request]);
+        $roomType->name = $request->name;
+        $roomType->description = $request->description;
         $roomType->save();
         return redirect()->action('RoomTypeController@index');
     }
