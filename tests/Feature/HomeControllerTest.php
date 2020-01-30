@@ -16,8 +16,10 @@ class HomeControllerTest extends TestCase
      */
     public function testExample()
     {
-        $response = $this->get('/');
+        $user = factory('App\User')->create();
+        $response = $this->actingAs($user)->get('/home');
 
-        $response->assertStatus(200);
+        $response->assertStatus(200)
+            ->assertSeeText('You are logged in');
     }
 }
