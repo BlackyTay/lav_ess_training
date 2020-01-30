@@ -15,9 +15,9 @@ class ShowRoomsControllerTest extends TestCase
      */
     public function testExample()
     {
-        $response = $this->get('/test');
+        $response = $this->get('/rooms');
 
         $response->assertStatus(200)
-            ->assertSeeText('Goodbye');
+            ->assertSeeText('Type');
     }
 }
