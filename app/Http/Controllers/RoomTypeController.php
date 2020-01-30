@@ -15,6 +15,7 @@ class RoomTypeController extends Controller
      */
     public function index()
     {
+        Cache::get('key');
         return view('roomTypes.index')->with('roomTypes', RoomType::paginate());
     }
 
