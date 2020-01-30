@@ -35,6 +35,7 @@ class ShowRoomsControllerTest extends TestCase
         $response->assertStatus(200)
             ->assertSeeText('Type')
             ->assertViewIs('rooms.index')
-            ->assertViewHas('rooms');
+            ->assertViewHas('rooms')
+            ->assertSeeText($roomType->name);
     }
 }
