@@ -15,8 +15,10 @@ class RoomTypeControllerTest extends TestCase
      */
     public function testExample()
     {
-        $response = $this->get('/');
+        $response = $this->get('/room_types');
 
-        $response->assertStatus(200);
+        $response->assertStatus(200)
+            ->assertSeeText('Name')
+            ->assertViewIs('roomTypes.index');
     }
 }
