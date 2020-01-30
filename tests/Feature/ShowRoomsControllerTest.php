@@ -22,4 +22,11 @@ class ShowRoomsControllerTest extends TestCase
             ->assertViewIs('rooms.index')
             ->assertViewHas('rooms');
     }
+
+    public function testRoomParameter()
+    {
+        $roomTypes = factory('App\RoomType', 3)->create();
+        $rooms = factory('App\Room', 20)->create();
+        $roomType = $roomTypes->random();
+    }
 }
