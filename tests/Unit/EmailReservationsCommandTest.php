@@ -13,6 +13,26 @@ class EmailReservationsCommandTest extends TestCase
      */
     public function testExample()
     {
-        $this->assertTrue(true);
+        $notify = $this->getMockBuilder('App\Libraries\Notifications')
+            ->disableOriginalConstructor()
+            ->setMethods(['send'])
+            ->getMock();
+
+        $notify->expects($this->once())
+            ->method('send')
+            ->with()
+            ->willReturn(true);
+        
+        $command = $this->getMockBuilder('App\Console\Commands\EmailReservationsCommand')
+            ->setConstructorArgs([$notify])
+            ->setMethods(['option'])
+            ->getMock();
+
+        $command->expects($this->once())
+            ->method('option')
+            ->with('dry-run')
+            ->willReturn(false);
+
+        $command->processBooking();
     }
 }
