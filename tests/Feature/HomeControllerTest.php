@@ -22,4 +22,12 @@ class HomeControllerTest extends TestCase
         $response->assertStatus(200)
             ->assertSeeText('You are logged in');
     }
+
+    public function testLoggedOut()
+    {
+        $response = $this->get('/home');
+
+        $response->assertStatus(302)
+            ->assertRedirect('/login');
+    }
 }
