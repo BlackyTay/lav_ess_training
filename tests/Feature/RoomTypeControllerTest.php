@@ -16,6 +16,10 @@ class RoomTypeControllerTest extends TestCase
      */
     public function testExample()
     {
+        Cache::shouldReceive('get')
+            ->once()
+            ->with('key')
+            ->andReturn('value');
         $response = $this->get('/room_types');
 
         $response->assertStatus(200)
