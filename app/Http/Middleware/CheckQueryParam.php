@@ -15,6 +15,10 @@ class CheckQueryParam
      */
     public function handle($request, Closure $next)
     {
+        if ($request->query('test') != null)
+        {
+            abort(404);
+        }
         return $next($request);
     }
 }
