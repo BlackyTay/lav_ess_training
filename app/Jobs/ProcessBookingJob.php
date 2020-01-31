@@ -17,9 +17,9 @@ class ProcessBookingJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(\App\Booking $booking)
     {
-        //
+        $this->booking = $booking;
     }
 
     /**
@@ -29,6 +29,6 @@ class ProcessBookingJob implements ShouldQueue
      */
     public function handle()
     {
-        //
+        sleep(5);
     }
 }
