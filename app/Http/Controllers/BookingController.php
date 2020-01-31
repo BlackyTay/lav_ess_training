@@ -90,7 +90,7 @@ class BookingController extends Controller
      */
     public function update(Request $request, Booking $booking)
     {
-        (new \App\Jobs\ProcessBookingJob($booking))->handle();
+        (\App\Jobs\ProcessBookingJob::dispatch($booking));
         $validatedData = $request->validate([
             'start' => 'required|date',
             'end' => 'required|date',
