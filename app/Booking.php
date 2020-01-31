@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 class Booking extends Model
 {
     use SoftDeletes;
+    use Notifiable;
+    
     protected $fillable = [
             'room_id',
             'start',
