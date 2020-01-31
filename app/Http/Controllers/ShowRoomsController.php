@@ -16,7 +16,7 @@ class ShowRoomsController extends Controller
      */
     public function __invoke(Request $request, \App\RoomType $roomType = null)
     {
-        $rooms = Room::byType($roomType)->get();
+        $rooms = Room::byType($roomType->id)->get();
         return view('rooms.index', ['rooms'=>$rooms]);
     }
 }
