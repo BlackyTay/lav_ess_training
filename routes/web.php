@@ -20,9 +20,14 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/test', function() {
-    $secret = encrypt('blacky');
-    var_dump($secret);
-    var_dump(decrypt($secret));
+    $hash = Hash::make('blacky');
+    var_dump($hash);
+    var_dump(Hash::check('blacky', $hash));
+    var_dump(Hash::needsRehash($hash));
+    $oldHash = Hash::make('blacky', ['rounds' => 5]);
+    var_dump($oldHash);
+    var_dump(Hash::needsRehash($oldHash));
+    var_dump(Hash::make('blacky'));
     return "Goodbye";
 } )->middleware('verified');
 
