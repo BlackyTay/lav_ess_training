@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
                  ->everyMinute()
                  ->environments('local')
                  ->runInBackround()
-                 ->appendOutputTo('/home/vagrant/code/storage/logs/env.log')
+                 ->appendOutputTo('/home/vagrant/lav_ess_training/storage/logs/env.log')
                  ->after(function() { return true; });
     }
 
