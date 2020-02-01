@@ -47,8 +47,8 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'start' => 'required|date',
-            'end' => 'required|date',
+            'start' => 'required|date|after:yesterday',
+            'end' => 'required|date|after:start',
             'room_id' => 'required|exists:rooms,id',
             'user_id' => 'required|exists:users,id',
             'is_paid' => 'nullable',
@@ -101,8 +101,8 @@ class BookingController extends Controller
     {
         (\App\Jobs\ProcessBookingJob::dispatch($booking));
         $validatedData = $request->validate([
-            'start' => 'required|date',
-            'end' => 'required|date',
+            'start' => 'required|date|after:yesterday',
+            'end' => 'required|date|after:start',
             'room_id' => 'required|exists:rooms,id',
             'user_id' => 'required|exists:users,id',
             'is_paid' => 'nullable',
