@@ -19,7 +19,12 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/test', function() {return "Goodbye";} )->middleware('verified');
+Route::get('/test', function() {
+    $secret = encrypt('blacky');
+    var_dump($secret);
+    var_dump(decrypt($secret));
+    return "Goodbye";
+} )->middleware('verified');
 
 Route::get('/rooms/{roomType?}', 'ShowRoomsController');
 
