@@ -28,8 +28,8 @@ class Kernel extends ConsoleKernel
                  ->hourly();
         $schedule->command('env')
                  ->everyMinute()
-                 ->environments('local')
-                 ->runInBackround()
+                 ->environments(['local'])
+                 ->runInBackground()
                  ->appendOutputTo('/home/vagrant/lav_ess_training/storage/logs/env.log')
                  ->after(function() { return true; });
     }
