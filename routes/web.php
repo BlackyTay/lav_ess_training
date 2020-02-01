@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/test', function() {return "Goodbye";} )->middleware('App\Http\Middleware\CheckQueryParam');
+Route::get('/test', function() {return "Goodbye";} )->middleware('auth');
 
 Route::get('/rooms/{roomType?}', 'ShowRoomsController');
 
