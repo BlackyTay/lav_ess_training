@@ -15,11 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/test', function() {return "Goodbye";} )->middleware('auth');
+Route::get('/test', function() {return "Goodbye";} )->middleware('verified');
 
 Route::get('/rooms/{roomType?}', 'ShowRoomsController');
 
