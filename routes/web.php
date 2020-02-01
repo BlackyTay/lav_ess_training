@@ -29,7 +29,7 @@ Route::get('/test', function() {
     var_dump(Hash::needsRehash($oldHash));
     var_dump(Hash::make('blacky'));
     return "Goodbye";
-} )->middleware('verified');
+} );
 
 Route::get('/rooms/{roomType?}', 'ShowRoomsController');
 
