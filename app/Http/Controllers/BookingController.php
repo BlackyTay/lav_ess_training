@@ -46,8 +46,17 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        $booking = Booking::create($request->input());
-        $booking->users()->attach($request->input('user_id'));
+        $validatedData = $request->validate([
+            'start' => 'required|date',
+            'end' => 'required|date',
+            'room_id' => 'required|exists:rooms,id',
+            'user_id' => 'required|exists:users,id',
+            'is_paid' => 'nullable',
+            'notes' => 'present',
+            'is_reservation' => 'required',
+        ]);
+        $booking = Booking::create($validatedData);
+        $booking->users()->attach($validatedData['user_id']);
         return redirect()->action('BookingController@index');
     }
 
